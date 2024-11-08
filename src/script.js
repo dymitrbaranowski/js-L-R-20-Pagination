@@ -1,113 +1,157 @@
-// https://media.licdn.com/dms/image/C5112AQEr5Pvwftcnpw/article-cover_image-shrink_600_2000/0/1538241940135?e=1687392000&v=beta&t=nBUq1TFjTuJmww0wqfhnd8A8SI_Vnq4S0F-xk2GI3YM
-// https://uk.wikipedia.org/wiki/SOAP
-// https://swapi.dev/
+// XJlq9OFMcHAy8pAQK7xj
+// https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+const BASE_URL = 'https://the-one-api.dev/v2/';
+const END_POINT = 'character';
+const KEY = '7KAdfd-upWP7afmgHvI7';
+function getCharacter() {
+  const param = new URLSearchParams({
+    limit: 30,
+    page: 1,
+  });
 
-// Перерва до  21.00
-// const search = document.querySelector(".js-search");
+  const option = {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${KEY}`,
+    },
+  };
+
+  fetch(`${BASE_URL}${END_POINT}?${param}`, option).then(resp =>
+    console.log(resp)
+  );
+}
+getCharacter();
+const target = document.querySelector('.js-guard');
+let options = {
+  root: null,
+  rootMargin: '200px',
+  threshold: 1.0,
+};
+
+// let observer = new IntersectionObserver(callback, options);
+// function callback(evt){
+// console.log(evt);
+// }
+// const BASE_URL = "https://api.themoviedb.org/3/";
+// const ENDPOINT = "trending/movie/day";
+// const API_KEY = "345007f9ab440e5b86cef51be6397df1";
 // const list = document.querySelector(".js-list");
-// search.addEventListener("submit", onSearch);
+// const loadMore = document.querySelector(".js-load");
+// let currentPage = 1;
 
-// function onSearch(evt) {
-//   evt.preventDefault();
+// loadMore.addEventListener("click", onLoad);
 
-//   const { query, days } = evt.currentTarget.elements;
-//   getWeather(query.value, days.value)
-//     .then((data) => (list.innerHTML = createMarkup(data.forecast.forecastday)))
+// function onLoad() {
+//   currentPage += 1;
+//   getTrending(currentPage)
+//     .then((data) => {
+//       list.insertAdjacentHTML("beforeend", createMarkup(data.results));
+
+//       if (data.page === data.total_pages) {
+//         loadMore.hidden = true;
+//       }
+//     })
 //     .catch((err) => console.log(err));
 // }
 
-// function getWeather(city, days) {
-//   const BASE_URL = "http://api.weatherapi.com/v1";
-//   const API_KEY = "ce2cb9b2a3da414bb5b172546231704";
-//   const params = new URLSearchParams({
-//     key: API_KEY,
-//     q: city,
-//     days: days,
-//     lang: "uk",
-//   });
+// function getTrending(page = 1) {
+//   return fetch(`${BASE_URL}${ENDPOINT}?api_key=${API_KEY}&page=${page}`).then(
+//     (resp) => {
+//       if (!resp.ok) {
+//         throw new Error(resp.statusText);
+//       }
 
-//   return fetch(`${BASE_URL}/forecast.json?${params}`).then((resp) => {
-//     if (!resp.ok) {
-//       throw new Error(resp.statusText);
+//       return resp.json();
 //     }
+//   );
+// }
+// getTrending()
+//   .then((data) => {
+//     list.insertAdjacentHTML("beforeend", createMarkup(data.results));
+//     observer.observe(target)
+//     if (data.page !== data.total_pages) {
+//       loadMore.hidden = false;
+//     }
+//   })
+//   .catch((err) => console.log(err));
 
-//     return resp.json();
+// function createMarkup(arr) {
+//   return arr
+//     .map(
+//       ({ poster_path, title }) => `<li>
+//     <img src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}">
+//     <h2>${title}</h2>
+// </li>`
+//     )
+//     .join("");
+// }
+
+// // ПЕРЕРВА ДО 22.00
+
+// let counter = 0;
+// document.addEventListener("scroll", onScroll);
+
+// function onScroll() {
+//   counter += 1;
+//   console.log(counter);
+// }
+
+// const target = document.querySelector('.js-guard');
+// const BASE_URL = 'https://api.themoviedb.org/3/';
+// const ENDPOINT = 'trending/movie/day';
+// const API_KEY = '345007f9ab440e5b86cef51be6397df1';
+// const list = document.querySelector('.js-list');
+
+// let currentPage = 1;
+// let options = {
+//   root: null,
+//   rootMargin: '300px',
+//   threshold: 1.0,
+// };
+
+// let observer = new IntersectionObserver(onLoad, options);
+// function onLoad(entries, observer) {
+//   console.log(entries);
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       currentPage += 1;
+//       getTrending(currentPage)
+//         .then(data => {
+//           list.insertAdjacentHTML('beforeend', createMarkup(data.results));
+//           if (data.page === data.total_pages) {
+//             observer.unobserve(target);
+//           }
+//         })
+//         .catch(err => console.log(err));
+//     }
 //   });
 // }
 
 // function createMarkup(arr) {
 //   return arr
 //     .map(
-//       ({
-//         date,
-//         day: {
-//           avgtemp_c,
-//           condition: { text, icon },
-//         },
-//       }) => `<li>
-//     <img src="${icon}" alt="${text}">
-//     <p>${text}</p>
-//     <h2>${date}</h2>
-//     <h3>${avgtemp_c}</h3>
+//       ({ poster_path, title }) => `<li>
+//     <img src="https://image.tmdb.org/t/p/w400${poster_path}" alt="${title}">
+//     <h2>${title}</h2>
 // </li>`
 //     )
-//     .join("");
+//     .join('');
 // }
 
-// fetch(
-//   "https://common-api.rozetka.com.ua/v1/api/sellers?country=UA&lang=ru&ids=21666"
-// );
+// function getTrending(page = 1) {
+//   return fetch(`${BASE_URL}${ENDPOINT}?api_key=${API_KEY}&page=${page}`).then(
+//     resp => {
+//       if (!resp.ok) {
+//         throw new Error(resp.statusText);
+//       }
 
-const search = document.querySelector('.js-search');
-const list = document.querySelector('.js-list');
-search.addEventListener('submit', onSearch);
-
-function onSearch(evt) {
-  evt.preventDefault();
-
-  const { query, days } = evt.currentTarget.elements;
-  getWeather(query.value, days.value)
-    .then(data => (list.innerHTML = createMarkup(data.forecast.forecastday)))
-    .catch(err => console.log(err));
-}
-
-function getWeather(city, days) {
-  //http://api.weatherapi.com/v1/forecast.json?key=2a8d1a66318246e9b1c81420240611&q=Paris&days=5
-  const BASE_URL = 'http://api.weatherapi.com/v1';
-  const API_KEY = '2a8d1a66318246e9b1c81420240611';
-
-  const params = new URLSearchParams({
-    key: API_KEY,
-    q: city,
-    days: days,
-    lang: 'uk',
-  });
-
-  console.log(params);
-  return fetch(`${BASE_URL}/forecast.json?${params}`).then(resp => {
-    if (!resp.ok) {
-      throw new Error(resp.statusText);
-    }
-
-    return resp.json();
-  });
-}
-
-function createMarkup(arr) {
-  return arr
-    .map(
-      ({
-        date,
-        day: {
-          avgtemp_c,
-          condition: { icon, text },
-        },
-      }) => `<li>
-        <img src="${icon}" alt="${text}" />
-        <p>${text}</p>
-        <h2>${date}</h2>
-        <h3>${avgtemp_c}</h3>
-      </li>`
-    )
-    .join('');
-}
+//       return resp.json();
+//     }
+//   );
+// }
+// getTrending()
+//   .then(data => {
+//     list.insertAdjacentHTML('beforeend', createMarkup(data.results));
+//     observer.observe(target);
+//   })
+//   .catch(err => console.log(err));
